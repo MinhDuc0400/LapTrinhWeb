@@ -2,8 +2,8 @@ package bank.entiry;
 
 import java.util.Date;
 
+
 public class Customer {
-	
 	private int id ;
 	private String idNumber;
 	private String name;
@@ -49,11 +49,6 @@ public class Customer {
 	}
 	public Customer() {
 		
-	}
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", idNumber=" + idNumber + ", name=" + name + ", dateOfBirth=" + dateOfBirth
-				+ ", address=" + address + "]";
 	}
 	
 	
