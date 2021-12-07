@@ -3,103 +3,71 @@ package bank.entiry;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-
+import javax.persistence.OneToOne;
 @Entity
 public class TKTinDung {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id ;
-	private int currentBalance;
-	private int minimumBalance;
-	private float interest;
-	private int firstSend;
-	
-	
-	@ManyToOne(targetEntity=Employee.class)
-	private Employee employee;
-	
-	
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-	
-	@ManyToOne(targetEntity=Customer.class)
+	private String idCardNumber;
+	private Date createDate;
+	private double dept;
+	private double maxiumDept;
+	@OneToOne(targetEntity=Customer.class)
+	@JoinColumn(name = "idCustomer")
 	private Customer customer;
-
+	@ManyToOne(targetEntity=Employee.class)
+	@JoinColumn(name = "idEmployeee")
+	private Employee employee;
+	public String getIdCardNumber() {
+		return idCardNumber;
+	}
+	public void setIdCardNumber(String idCardNumber) {
+		this.idCardNumber = idCardNumber;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public double getDept() {
+		return dept;
+	}
+	public void setDept(double dept) {
+		this.dept = dept;
+	}
+	public double getMaxiumDept() {
+		return maxiumDept;
+	}
+	public void setMaxiumDept(double maxiumDept) {
+		this.maxiumDept = maxiumDept;
+	}
 	public Customer getCustomer() {
 		return customer;
 	}
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
-	private Date creationDate;
-	@PrePersist
-	void createdAt() {
-	this.creationDate = new Date();
+	public Employee getEmployee() {
+		return employee;
 	}
-	
-	public TKTinDung(int id, int currentBalance, int minimumBalance, float interest, int firstSend, Employee employee, Customer customer) {
-		this.id = id;
-		this.currentBalance = currentBalance;
-		this.minimumBalance = minimumBalance;
-		this.interest = interest;
-		this.firstSend = firstSend;
+	public void setEmployee(Employee employee) {
 		this.employee = employee;
-		this.customer = customer;
 	}
-	
 	public TKTinDung() {
-		
+		// TODO Auto-generated constructor stub
+	}
+	public TKTinDung(String idCardNumber, Date createDate, double dept, double maxiumDept, Customer customer,
+			Employee employee) {
+		super();
+		this.idCardNumber = idCardNumber;
+		this.createDate = createDate;
+		this.dept = dept;
+		this.maxiumDept = maxiumDept;
+		this.customer = customer;
+		this.employee = employee;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getCurrentBalance() {
-		return currentBalance;
-	}
-	
-	public void setCurrentBalance(int currentBalance) {
-		this.currentBalance = currentBalance;
-	}
-	
-	public int getMinimumBalance() {
-		return minimumBalance;
-	}
-	
-	public void setMinimumBalance(int minimumBalance) {
-		this.minimumBalance = minimumBalance;
-	}
-	
-	public float getInterest() {
-		return interest;
-	}
-	
-	public void setInterest(float interest) {
-		this.interest = interest;
-	}
-	
-	public int getFirstSend() {
-		return firstSend;
-	}
-	
-	public void setFirstSend(int firstSend) {
-		this.firstSend = firstSend;
-	}
 }

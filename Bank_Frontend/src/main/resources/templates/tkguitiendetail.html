@@ -113,39 +113,14 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-					<div class="col-md-12">
-						<div style="margin-bottom:5px;margin-top:20px;">
-					        <a href="/addcustomer" class="btn btn-primary">Add Customer</a>
-					    </div>
-					<div class="panel panel-primary">
-						<div class="panel-heading">List Customer</div>
-					        <div class="panel-body">
-					            <table class="table table-bordered table-hover">
-					                <tr>
-					                    <th style="width:100px"> id </th>
-					                    <th style="width:100px">idnumber</th>
-					                    <th>Name</th>
-					                    <th style="width:150px">DateOfBirth</th>
-					                    <th style="width:70px; text-align:center">Address</th>
-					                    
-					                    <th style="width:100px"></th>
-					                </tr>
-						            <tr th:each="customer :${listcustomer}">
-						                <td th:text="${customer.id}"></td >
-						                <td th:text="${customer.idNumber}"></td >
-						                <td th:text="${customer.name}"></td >
-						                <td  th:text="${#dates.format(customer.dateOfBirth, 'dd-MM-yyyy')}"></td >
-						                <td th:text="${customer.address}"></td >
-						                
-						                <td style="text-align:center;">
-						                    <a th:href="@{'/updatecustomer/' + ${customer.id}}"> Edit</a>&nbsp;
-						                    <a th:href="@{'/deletecustomer/' + ${customer.id}}" onclick="return window.confirm('Are you sure?');">Delete</a>
-						                </td>
-						            </tr>
-					            </table>
-					        </div>
-					    </div>
-					</div>
+					<div th:text="${tkguitien.idCardNumber}"> </div>
+					 <div style="margin-bottom:5px;margin-top:20px;">
+					        <a th:href="@{'/edittkguitien/' + ${tkguitien.idCardNumber}}" class="btn btn-primary">Edit</a>
+					  </div>
+					  <div style="margin-bottom:5px;margin-top:20px;">
+					   		<a th:href="@{'/deletetkguitien/' + ${tkguitien.idCardNumber}}" onclick="return window.confirm('Are you sure?');"  class="btn btn-danger">Delete</a>
+					  
+					  </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

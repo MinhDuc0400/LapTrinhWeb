@@ -3,6 +3,7 @@ package bank.Controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 
 import bank.entiry.Customer;
 import bank.entiry.Employee;
+import bank.entiry.TKGuiTien;
+import bank.entiry.TKTinDung;
 @Controller
 public class CustomerController {
 	RestTemplate rest=new RestTemplate();
@@ -25,6 +28,15 @@ public class CustomerController {
 	public String customercategory(Model model)
 	{
 		List<Customer> listcustomer=Arrays.asList(rest.getForObject("http://localhost:8080/customer/recent", Customer[].class));
+		List<TKGuiTien> listTKGuiTien=new ArrayList<>();
+		List<TKTinDung>  listTKTinDung=new ArrayList<>();
+		for(int i=0;i<listcustomer.size();i++)
+		{
+			listTKTinDung.add(rest.getForObject("http://localhost:8080/tktindung/findbycustomer/{id}", TKTinDung.class,listcustomer.get(i).getId()));
+			listTKGuiTien.add(rest.getForObject("http://localhost:8080/tkguitien/findbycustomer/{id}", TKGuiTien.class,listcustomer.get(i).getId()));
+		}
+		model.addAttribute("listTKTinDung", listTKTinDung);
+		model.addAttribute("listTKGuiTien", listTKGuiTien);
 		model.addAttribute("listcustomer",listcustomer);
 		return "customer";
 	}

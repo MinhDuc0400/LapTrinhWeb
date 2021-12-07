@@ -1,11 +1,9 @@
 package bank.entiry;
 
-
-
 import java.util.Date;
 
-
 public class Employee {
+	
 	private int id ;
 	private String idNumber;
 	private String name;
@@ -100,6 +98,12 @@ public class Employee {
 	}
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
+	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", idNumber=" + idNumber + ", name=" + name + ", dateOfBirth=" + dateOfBirth
+				+ ", address=" + address + ", level=" + level + ", joinDate=" + joinDate + ", position=" + position
+				+ ", salary=" + salary + ", userName=" + userName + ", passWord=" + passWord + "]";
 	}
 	
 	

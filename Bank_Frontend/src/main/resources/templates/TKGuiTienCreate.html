@@ -140,45 +140,42 @@
 			<main>
 				<div class="col-md-12">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Add edit Customer</div>
+						<div class="panel-heading">Add edit TKGuiTien</div>
 						<div class="panel-body">
-							<form method="post" action="/createupdatecustomer" th:object="${customer}">
+							<form method="post" action="/createtkguitien" th:object="${tkguitien}">
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">Name</div>
+									<div class="col-md-2">idCardNumber</div>
 									<div class="col-md-10">
-										<input type="text" class="form-control" th:field="${customer.name}" required>
+										<input type="text" class="form-control" th:field="${tkguitien.idCardNumber}" required>
 									</div>
 								</div>
 								<!-- end rows -->
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">idNumber</div>
+									<div class="col-md-2">minimumBalance</div>
 									<div class="col-md-10">
-										<input type="text" th:field="${customer.idNumber}" required />
+										<input type="text" class="form-control" th:field="${tkguitien.miniumBalance}" required>
 									</div>
 								</div>
 								<!-- end rows -->
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">DateOfBirth</div>
+									<div class="col-md-2">Interset</div>
 									<div class="col-md-10">
-										<input type="text" th:value="${#dates.format(customer.dateOfBirth, 'dd-MM-yyyy')}" name="dob" required />
+										<input type="text" class="form-control" th:field="${tkguitien.interset}" required>
 									</div>
 								</div>
-								<!-- end rows -->
-								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">address</div>
+									<div class="col-md-2">FirstSend</div>
 									<div class="col-md-10">
-										<input type="text" th:field="${customer.address}" required />
+										<input type="text" class="form-control" th:field="${tkguitien.firstSend}" required>
 									</div>
 								</div>
-								<!-- end rows -->
 								<div class="row" style="margin-top:5px;">
 									<div class="col-md-2"></div>
 									<div class="col-md-10">
-										<input type="hidden" th:field="*{id}">
+										
 										<input type="submit" value="Process" class="btn btn-primary" >
 									</div>
 								</div>
