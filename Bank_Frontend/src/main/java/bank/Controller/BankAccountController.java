@@ -109,4 +109,71 @@ public class BankAccountController {
 		rest.getForObject("http://localhost:8080/tkguitien/delete/{id}",Boolean.class,id);
 		return "redirect:/bankaccount";
 	}
+	//
+	@GetMapping("/detailtktindung/{id}")
+	public String detailtktindung(@PathVariable("id") String id,Model model)
+	{
+		
+		TKTinDung TKTinDung=rest.getForObject("http://localhost:8080/tktindung/detail/{id}", TKTinDung.class,id);
+		model.addAttribute("tktindung",TKTinDung);
+		return "tktindungdetail";
+	}
+	@GetMapping("/createtktindung/{id}")
+	public String creatTKTinDung(@PathVariable("id") String idcustomer,Model model,HttpServletRequest req)
+	{
+		
+		Customer customer=rest.getForObject("http://localhost:8080/customer/findcustomerbyid/{id}", Customer.class,idcustomer);
+		req.getSession().setAttribute("customer", customer);
+		TKTinDung tktindung=new TKTinDung();
+		model.addAttribute("tktindung",tktindung);
+		return "TKTinDungCreate";
+	}
+	@PostMapping("/createtktindung")
+	public String createTkTinDung(TKTinDung tktindung,HttpServletRequest req)
+	{
+		Employee employee=(Employee) req.getSession().getAttribute("employeeLogin");
+		Customer customer= (Customer) req.getSession().getAttribute("customer");
+		tktindung.setCustomer(customer);
+		tktindung.setEmployee(employee);
+		tktindung.setCreateDate(new Date());
+		tktindung.setDept(0);
+		tktindung.setMaxiumDept(0);
+		rest.postForObject("http://localhost:8080/tktindung/add", tktindung, TKTinDung.class);
+		return "redirect:/bankaccount";
+	}
+	@GetMapping("/edittktindung/{id}")
+	public String editTKTinDung(@PathVariable("id") String idCardNumber,Model model,HttpServletRequest req)
+	{
+		TKTinDung tktindung=rest.getForObject("http://localhost:8080/tktindung/detail/{id}", TKTinDung.class,idCardNumber);
+		
+		req.getSession().setAttribute("customer", tktindung.getCustomer());
+		req.getSession().setAttribute("employeecreateaccount", tktindung.getEmployee());
+		model.addAttribute("tktindung",tktindung);
+		return "TKTinDungUpdate";
+	}
+	@PostMapping("/edittktindung")
+	public String editTkTinDung(TKTinDung tktindung,HttpServletRequest req)
+	{
+		Employee employee=(Employee) req.getSession().getAttribute("employeecreateaccount");
+		Customer customer= (Customer) req.getSession().getAttribute("customer");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		String cd = req.getParameter("cd");
+		try {
+			tktindung.setCreateDate(simpleDateFormat.parse(cd));
+		} catch (ParseException e) {
+
+			System.out.println(e);
+		}
+		System.out.println(tktindung.getCreateDate()+"alooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+		tktindung.setCustomer(customer);
+		tktindung.setEmployee(employee);
+		rest.postForObject("http://localhost:8080/tktindung/add", tktindung, TKTinDung.class);
+		return "redirect:/bankaccount";
+	}
+	@GetMapping("/deletetktindung/{id}")
+	public String deleteTKTinDung(@PathVariable("id") String id,Model model)
+	{	
+		rest.getForObject("http://localhost:8080/tktindung/delete/{id}",Boolean.class,id);
+		return "redirect:/bankaccount";
+	}
 }
