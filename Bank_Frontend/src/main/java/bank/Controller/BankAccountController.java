@@ -136,8 +136,8 @@ public class BankAccountController {
 		tktindung.setCustomer(customer);
 		tktindung.setEmployee(employee);
 		tktindung.setCreateDate(new Date());
-		tktindung.setDept(0);
-		tktindung.setMaxiumDept(0);
+		tktindung.setDept(tktindung.getDept());
+		tktindung.setMaxiumDept(tktindung.getMaxiumDept());
 		rest.postForObject("http://localhost:8080/tktindung/add", tktindung, TKTinDung.class);
 		return "redirect:/bankaccount";
 	}
