@@ -129,10 +129,6 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-
-
-				<div th:if="${message}=='false1'"> ko tim thay tai khoan</div  >
-				<div th:if="${message}=='false2'"> ko du tien chuyen</div  >
 				<form method="post" action="/chuyentien" th:object="${giaodich}">
 					<!-- rows -->
 						<div class="row" style="margin-top:5px;">
@@ -162,6 +158,7 @@
 							<div class="col-md-2">STK gui vao</div>
 							<div class="col-md-10">
 								<input type="text" class="form-control" th:field="${giaodich.tktindung.idCardNumber}"  required>
+								<div style="color: red;" th:if="${message}=='false1'"> Không tìm thấy tài khoản đích</div   >
 							</div>
 						</div>
 						<!-- end rows -->
@@ -170,6 +167,7 @@
 							<div class="col-md-2">so tien</div>
 							<div class="col-md-10">
 								<input type="text" class="form-control" th:field="${giaodich.exchange}" required />
+								<div style="color: red;" th:if="${message}=='false2'"> Không đủ số dư</div   >
 							</div>
 						</div>
 						<!-- end rows -->
