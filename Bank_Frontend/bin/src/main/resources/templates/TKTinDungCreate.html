@@ -10,6 +10,7 @@
 	<title>Dashboard - SB Admin</title>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 	<link href="/css/styles.css" rel="stylesheet" />
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 		crossorigin="anonymous"></script>
 </head>
@@ -138,45 +139,37 @@
 			<main>
 				<div class="col-md-12">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Add edit Customer</div>
+						<div class="panel-heading">Add edit TKTinDung</div>
 						<div class="panel-body">
-							<form method="post" action="/createupdatecustomer" th:object="${customer}">
+							<form method="post" action="/createtktindung" th:object="${tktindung}">
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">Name</div>
+									<div class="col-md-2">idCardNumber</div>
 									<div class="col-md-10">
-										<input type="text" class="form-control" th:field="${customer.name}" required>
+										<input type="text" class="form-control" th:field="${tktindung.idCardNumber}" required>
 									</div>
 								</div>
 								<!-- end rows -->
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">idNumber</div>
+									<div class="col-md-2">dept</div>
 									<div class="col-md-10">
-										<input type="text" th:field="${customer.idNumber}" required />
+										<input type="text" class="form-control" th:field="${tktindung.dept}" required>
 									</div>
 								</div>
 								<!-- end rows -->
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">DateOfBirth</div>
+									<div class="col-md-2">maxiumDept</div>
 									<div class="col-md-10">
-										<input type="text" th:value="${#dates.format(customer.dateOfBirth, 'dd-MM-yyyy')}" name="dob" required />
-									</div>
-								</div>
-								<!-- end rows -->
-								<!-- rows -->
-								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">address</div>
-									<div class="col-md-10">
-										<input type="text" th:field="${customer.address}" required />
+										<input type="text" class="form-control" th:field="${tktindung.maxiumDept}" required>
 									</div>
 								</div>
 								<!-- end rows -->
 								<div class="row" style="margin-top:5px;">
 									<div class="col-md-2"></div>
 									<div class="col-md-10">
-										<input type="hidden" th:field="*{id}">
+										
 										<input type="submit" value="Process" class="btn btn-primary" >
 									</div>
 								</div>

@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -18,12 +18,7 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
+            
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -47,7 +42,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Customer
                             </a>
-                            <a class="nav-link" href="/employee">
+                             <a class="nav-link" href="/employee">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Employee
                             </a>
@@ -117,7 +112,50 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                   
+					<div class="col-md-12">
+						<div style="margin-bottom:5px;margin-top:20px;">
+					        <a href="/addemployee" class="btn btn-primary">Add Employee</a>
+					    </div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">List Employee</div>
+					        <div class="panel-body">
+					            <table class="table table-bordered table-hover">
+					                <tr>
+					                    <th style="width:100px"> id </th>
+					                    <th style="width:100px">idnumber</th>
+					                    <th style="width:150px">Name</th>
+					                    <th style="width:150px">DateOfBirth</th>
+					                    <th style="width:70px; text-align:center">Address</th>
+					                    <th style="width:70px; text-align:center">level</th>
+					                    <th style="width:150px; text-align:center">joinDate</th>
+					                    <th style="width:70px; text-align:center">position</th>
+					                    <th style="width:70px; text-align:center">salary</th>
+					                    <th style="width:70px; text-align:center">UserName</th>
+					                    <th style="width:70px; text-align:center">PassWord</th>
+					                    <th style="width:100px"></th>
+					                </tr>
+						            <tr th:each="employee :${listemployee}">
+						                <td th:text="${employee.id}"></td >
+						                <td th:text="${employee.idNumber}"></td >
+						                <td th:text="${employee.name}"></td >
+						                <td  th:text="${#dates.format(employee.dateOfBirth, 'dd-MM-yyyy')}"></td >
+						                <td th:text="${employee.address}"></td >
+						                <td th:text="${employee.level}"></td >
+						                <td th:text="${#dates.format(employee.joinDate, 'dd-MM-yyyy')}"></td >
+						                 <td th:text="${employee.position}"></td >
+						                 <td th:text="${employee.salary}"></td >
+						                 <td th:text="${employee.userName}"></td >
+						                 <td th:text="${employee.passWord}"></td >
+						                 
+						                <td style="text-align:center;">
+						                    <a th:href="@{'/updateemployee/' + ${employee.id}}"> Edit</a>&nbsp;
+						                    <a th:href="@{'/deleteemployee/' + ${employee.id}}" onclick="return window.confirm('Are you sure?');">Delete</a>
+						                </td>
+						            </tr>
+					            </table>
+					        </div>
+					    </div>
+					</div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

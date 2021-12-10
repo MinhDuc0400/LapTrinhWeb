@@ -112,7 +112,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                	<div class="col-md-12" style="margin-top: 20px;">
+                    <div class="col-md-12" style="margin-top: 20px;">
                 		<div class="panel panel-primary">
 						<div class="panel-heading">Tai Khoan Gui Tien Detail</div>
 					        <div class="panel-body">
@@ -145,6 +145,9 @@
 					        </div>
 					    </div>
                 	</div >
+                    <div style="margin-bottom:5px;margin-top:20px;">
+                        <a th:href="@{'/chuyentien/' + ${tkguitien.idCardNumber}}" class="btn btn-primary">chuyentien</a>
+                  </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
