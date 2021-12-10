@@ -61,58 +61,6 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-main {
-	padding: 0 15px;
-}
-
-.panel {
-	margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-}
-
-.panel-primary {
-	border-color: #337ab7;
-}
-
-.panel-heading {
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-}
-
-.panel-primary>.panel-heading {
-    color: #fff;
-    background-color: #337ab7;
-    border-color: #337ab7;
-}
-
-.panel-body {
-	padding: 15px;
-}
-
-.table, .dataTable-table {
-    --bs-table-bg: transparent;
-    --bs-table-accent-bg: transparent;
-    --bs-table-striped-color: #212529;
-    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
-    --bs-table-active-color: #212529;
-    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
-    --bs-table-hover-color: #212529;
-    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
-    vertical-align: top;
-    border-color: #dee2e6;
-}
-
-
-
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -326,10 +274,8 @@ svg {
 }
 
 table {
-    caption-side: bottom;
-    border-collapse: collapse;
-    border-spacing: 0;
-    background-color: transparent;
+  caption-side: bottom;
+  border-collapse: collapse;
 }
 
 caption {
