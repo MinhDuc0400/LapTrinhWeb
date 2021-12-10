@@ -138,14 +138,14 @@
 			<main>
 				<div class="col-md-12">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Add edit Customer</div>
+						<div class="panel-heading">Add edit Employee</div>
 						<div class="panel-body">
-							<form method="post" action="/createupdatecustomer" th:object="${customer}">
+							<form method="post" action="/createupdateemployee" th:object="${employee}">
 								<!-- rows -->
 								<div class="row" style="margin-top:5px;">
 									<div class="col-md-2">Name</div>
 									<div class="col-md-10">
-										<input type="text" class="form-control" th:field="${customer.name}" required>
+										<input type="text" th:field="${employee.name}" required>
 									</div>
 								</div>
 								<!-- end rows -->
@@ -153,7 +153,7 @@
 								<div class="row" style="margin-top:5px;">
 									<div class="col-md-2">idNumber</div>
 									<div class="col-md-10">
-										<input type="text" th:field="${customer.idNumber}" required />
+										<input type="text" th:field="${employee.idNumber}" required />
 									</div>
 								</div>
 								<!-- end rows -->
@@ -161,7 +161,7 @@
 								<div class="row" style="margin-top:5px;">
 									<div class="col-md-2">DateOfBirth</div>
 									<div class="col-md-10">
-										<input type="text" th:value="${#dates.format(customer.dateOfBirth, 'dd-MM-yyyy')}" name="dob" required />
+										<input type="text" th:value="${#dates.format(employee.dateOfBirth, 'dd-MM-yyyy')}" name="dob" required />
 									</div>
 								</div>
 								<!-- end rows -->
@@ -169,7 +169,55 @@
 								<div class="row" style="margin-top:5px;">
 									<div class="col-md-2">address</div>
 									<div class="col-md-10">
-										<input type="text" th:field="${customer.address}" required />
+										<input type="text" th:field="${employee.address}" required />
+									</div>
+								</div>
+								<!-- end rows -->
+								<!-- rows -->
+								<div class="row" style="margin-top:5px;">
+									<div class="col-md-2">level</div>
+									<div class="col-md-10">
+										<input type="text" th:field="${employee.level}" required />
+									</div>
+								</div>
+								<!-- end rows -->
+								<!-- rows -->
+								<div class="row" style="margin-top:5px;">
+									<div class="col-md-2">JoinDate</div>
+									<div class="col-md-10">
+										<input type="text" th:value="${#dates.format(employee.joinDate, 'dd-MM-yyyy')}" name="jd" required />
+									</div>
+								</div>
+								<!-- end rows -->
+								<!-- rows -->
+								<div class="row" style="margin-top:5px;">
+									<div class="col-md-2">position</div>
+									<div class="col-md-10">
+										<input type="text" th:field="${employee.position}" required />
+									</div>
+								</div>
+								<!-- end rows -->
+								<!-- rows -->
+								<div class="row" style="margin-top:5px;">
+									<div class="col-md-2">salary</div>
+									<div class="col-md-10">
+										<input type="text" th:field="${employee.salary}" required />
+									</div>
+								</div>
+								<!-- end rows -->
+								<!-- rows -->
+								<div class="row" style="margin-top:5px;">
+									<div class="col-md-2">userName</div>
+									<div class="col-md-10">
+										<input type="text" th:field="${employee.userName}" required />
+									</div>
+								</div>
+								<!-- end rows -->
+								<!-- rows -->
+								<div class="row" style="margin-top:5px;">
+									<div class="col-md-2">passWord</div>
+									<div class="col-md-10">
+										<input type="text" th:field="${employee.passWord}" required />
 									</div>
 								</div>
 								<!-- end rows -->

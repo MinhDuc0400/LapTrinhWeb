@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import bank.entiry.Customer;
 import bank.entiry.Employee;
+import bank.entiry.GiaoDich;
 import bank.entiry.TKGuiTien;
 import bank.entiry.TKTinDung;
 import bank.util.CustomerBankAccount;
@@ -175,5 +176,38 @@ public class BankAccountController {
 	{	
 		rest.getForObject("http://localhost:8080/tktindung/delete/{id}",Boolean.class,id);
 		return "redirect:/bankaccount";
+	}
+	@GetMapping("/chuyentien/{id}")
+	public String chuyenTien(@PathVariable("id") String id,Model model,HttpServletRequest req)
+	{
+		TKGuiTien TKGuiTien=rest.getForObject("http://localhost:8080/tkguitien/detail/{id}", TKGuiTien.class,id);
+		GiaoDich giaodich=new GiaoDich();
+		giaodich.setTkguitien(TKGuiTien);
+		
+		model.addAttribute("giaodich",giaodich);
+		return "chuyentien";
+	}
+	@PostMapping("/chuyentien")
+	public String chuyentien(GiaoDich giaodich,Model model,HttpServletRequest req)
+	{
+		Employee employee=(Employee) req.getSession().getAttribute("employeeLogin");
+		giaodich.setEmployee(employee);
+		giaodich.setTransactionDate(new Date());
+		int flag=rest.postForObject("http://localhost:8080/tkguitien/chuyentien", giaodich,Integer.class);
+		System.out.println(flag);
+		if(flag==0)
+		{
+			model.addAttribute("message","false1");
+			model.addAttribute("giaodich",giaodich);
+			return "chuyentien";
+		}
+		if (flag==1)
+		{
+			model.addAttribute("message","false2");
+			model.addAttribute("giaodich",giaodich);
+			return "chuyentien";
+		}
+		return "redirect:/bankaccount";
+		
 	}
 }

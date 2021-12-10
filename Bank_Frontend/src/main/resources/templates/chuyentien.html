@@ -22,14 +22,7 @@
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
 				class="fas fa-bars"></i></button>
 		<!-- Navbar Search-->
-		<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-					aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-						class="fas fa-search"></i></button>
-			</div>
-		</form>
+
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
 			<li class="nav-item dropdown">
@@ -56,14 +49,14 @@
 							<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 							Customer
 						</a>
-						 <a class="nav-link" href="/employee">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                               Employee
-                            </a>
-                            <a class="nav-link" href="/bankaccount">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                              	BankAccount
-                            </a>
+						<a class="nav-link" href="/employee">
+							<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+							Employee
+						</a>
+						<a class="nav-link" href="/bankaccount">
+							<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+							BankAccount
+						</a>
 						<div class="sb-sidenav-menu-heading">Interface</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -136,54 +129,56 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-				<div class="col-md-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Add edit Customer</div>
-						<div class="panel-body">
-							<form method="post" action="/createupdatecustomer" th:object="${customer}">
-								<!-- rows -->
-								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">Name</div>
-									<div class="col-md-10">
-										<input type="text" class="form-control" th:field="${customer.name}" required>
-									</div>
-								</div>
-								<!-- end rows -->
-								<!-- rows -->
-								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">idNumber</div>
-									<div class="col-md-10">
-										<input type="text" th:field="${customer.idNumber}" required />
-									</div>
-								</div>
-								<!-- end rows -->
-								<!-- rows -->
-								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">DateOfBirth</div>
-									<div class="col-md-10">
-										<input type="text" th:value="${#dates.format(customer.dateOfBirth, 'dd-MM-yyyy')}" name="dob" required />
-									</div>
-								</div>
-								<!-- end rows -->
-								<!-- rows -->
-								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2">address</div>
-									<div class="col-md-10">
-										<input type="text" th:field="${customer.address}" required />
-									</div>
-								</div>
-								<!-- end rows -->
-								<div class="row" style="margin-top:5px;">
-									<div class="col-md-2"></div>
-									<div class="col-md-10">
-										<input type="hidden" th:field="*{id}">
-										<input type="submit" value="Process" class="btn btn-primary" >
-									</div>
-								</div>
-							</form>
+
+
+				<div th:if="${message}=='false1'"> ko tim thay tai khoan</div  >
+				<div th:if="${message}=='false2'"> ko du tien chuyen</div  >
+				<form method="post" action="/chuyentien" th:object="${giaodich}">
+					<!-- rows -->
+						<div class="row" style="margin-top:5px;">
+						<div class="col-md-2">idCardNumber</div>
+						<div class="col-md-10">
+							<input type="text" class="form-control"th:field="${giaodich.tkguitien.idCardNumber}" readonly>
 						</div>
 					</div>
-				</div>
+					<!-- end rows -->
+					<!-- rows -->
+					<div class="row" style="margin-top:5px;">
+						<div class="col-md-2">current balance</div>
+						<div class="col-md-10">
+							<input type="text" class="form-control" th:field="${giaodich.tkguitien.currentBalance}" readonly>
+						</div>
+					</div>
+					<!-- end rows -->
+					<!-- rows -->
+					<div class="row" style="margin-top:5px;">
+						<div class="col-md-2">minium balance</div>
+						<div class="col-md-10">
+							<input type="text" class="form-control" th:field="${giaodich.tkguitien.miniumBalance}" readonly>
+						</div>
+					</div>
+						<!-- rows -->
+						<div class="row" style="margin-top:5px;">
+							<div class="col-md-2">STK gui vao</div>
+							<div class="col-md-10">
+								<input type="text" class="form-control" th:field="${giaodich.tktindung.idCardNumber}"  required>
+							</div>
+						</div>
+						<!-- end rows -->
+						<!-- rows -->
+						<div class="row" style="margin-top:5px;">
+							<div class="col-md-2">so tien</div>
+							<div class="col-md-10">
+								<input type="text" class="form-control" th:field="${giaodich.exchange}" required />
+							</div>
+						</div>
+						<!-- end rows -->
+						<input type="submit" value="giaodich" class="btn btn-primary" >
+
+				</form>
+
+				
+
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">

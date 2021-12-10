@@ -10,4 +10,5 @@ import bank.entiry.TKTinDung;
 public interface TKTinDungRepository extends JpaRepository<TKTinDung,String>{
 	@Query("select t from TKTinDung t where t.customer.id=?1")
 	public TKTinDung getTkTinDungbyCustomer(int id);
+	
 }
