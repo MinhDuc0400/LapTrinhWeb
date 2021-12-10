@@ -112,38 +112,14 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-					<div class="col-md-12">
-						<div style="margin-bottom:5px;margin-top:20px;">
-					        <a href="/addcustomer" class="btn btn-primary">Add Customer</a>
-					    </div>
-					<div class="panel panel-primary">
-						<div class="panel-heading">List Customer</div>
-					        <div class="panel-body">
-					            <table class="table table-bordered table-hover">
-					                <tr>
-					                    <th style="width:100px"> id </th>
-					                    <th style="width:100px">idnumber</th>
-					                    <th>Name</th>
-					                    <th style="width:150px">DateOfBirth</th>
-					                    <th style="width:70px; text-align:center">Address</th>
-					                    <th style="width:70px; text-align:center">TkGuiTien</th>
-					                    <th style="width:70px; text-align:center">TkTinDung</th>
-					                </tr>
-						            <tr th:each="account :${listaccount}">
-						                <td th:text="${account.customer.id}"></td >
-						                <td th:text="${account.customer.idNumber}"></td >
-						                <td th:text="${account.customer.name}"></td >
-						                <td  th:text="${#dates.format(account.customer.dateOfBirth, 'dd-MM-yyyy')}"></td >
-						                <td th:text="${account.customer.address}"></td >
-						                <td th:if="${account.tkguitien!=null}"> <a th:href="@{'/detailtkguitien/' + ${account.tkguitien.idCardNumber}}"> xem chi tiet</a> </td>
-						                <td th:if="${account.tkguitien==null}"> <a th:href="@{'/createtkguitien/' + ${account.customer.id}}"> them tai khoan</a> </td>
-						                <td th:if="${account.tktindung!=null}"> <a th:href="@{'/detailtktindung/' + ${account.tktindung.idCardNumber}}"> xem chi tiet</a> </td>
-						                <td th:if="${account.tktindung==null}"> <a th:href="@{'/createtktindung/' + ${account.customer.id}}"> them tai khoan</a> </td>
-						            </tr>
-					            </table>
-					        </div>
-					    </div>
-					</div>
+					<div th:text="${tktindung.idCardNumber}"> </div>
+					 <div style="margin-bottom:5px;margin-top:20px;">
+					        <a th:href="@{'/edittktindung/' + ${tktindung.idCardNumber}}" class="btn btn-primary">Edit</a>
+					  </div>
+					  <div style="margin-bottom:5px;margin-top:20px;">
+					   		<a th:href="@{'/deletetktindung/' + ${tktindung.idCardNumber}}" onclick="return window.confirm('Are you sure?');"  class="btn btn-danger">Delete</a>
+					  
+					  </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
