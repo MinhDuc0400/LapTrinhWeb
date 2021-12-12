@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class GiaoDich {
 	@Id
@@ -22,12 +25,15 @@ public class GiaoDich {
 	private Date TransactionDate;
 	@ManyToOne
 	@JoinColumn(name = "idTKGuiTien")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	TKGuiTien tkguitien;
 	@ManyToOne
 	@JoinColumn(name = "idTKTinDung")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	TKTinDung tktindung;
 	@ManyToOne
 	@JoinColumn(name="idEmployee")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	Employee employee;
 	public int getId() {
 		return id;

@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -18,7 +18,12 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-            
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -36,7 +41,7 @@
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                       <div class="nav">
+                        <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="/customer">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -65,44 +70,32 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="col-md-12" style="margin-top: 20px;">
+                   <div class="col-md-12" style="margin-top: 20px;">
                 		<div class="panel panel-primary">
-						<div class="panel-heading">Tai Khoan Gui Tien Detail</div>
+						<div class="panel-heading">Lich su giao dich</div>
 					        <div class="panel-body">
 					            <table class="table table-bordered table-hover">
-					                <tr>
-					                    <th style="width:100px">id Card Number</th>
-					                    <th style="width:200px;">Owner</th >
-					                    <th style="width:100px">Create Date</th>
-					                    <th style="width:70px; text-align:center">Current Balance</th>
-					                    <th style="width:70px; text-align:center">Minimum Balance</th>
-					                    <th style="width:70px; text-align:center">Interest</th>
-					                    <th style="width:70px; text-align:center">First Send</th>
-					                    <th style="width:150px; text-align:center">Function</th >
+					                <tr >
+					                    <th style="width:100px">id</th>
+					                    <th style="width:200px;">Exchange</th >
+					                    <th style="width:100px">Transaction Date</th>
+					                    <th style="width:70px; text-align:center">Employee</th>
+					                    <th style="width:70px; text-align:center">Tài khoảng gửi tiền</th>
+					                   <th style="width:70px; text-align:center">Tài khoảng tín dụng</th>
 					                    
-					                </tr>
-						                <td th:text="${tkguitien.idCardNumber}"></td >
-						                <td th:text="${tkguitien.customer.name}"></td >
-						                <td  th:text="${#dates.format(tkguitien.createDate, 'dd-MM-yyyy')}"></td >
-						                <td th:text="${tkguitien.currentBalance}"></td >
-						                <td th:text="${tkguitien.miniumBalance}"></td >
-						                <td th:text="${tkguitien.interset}"></td >
-						                <td th:text="${tkguitien.firstSend}"></td >
-						                <td style="display: flex; justify-content: space-evenly;">
-						                	<div>
-										        <a th:href="@{'/edittkguitien/' + ${tkguitien.idCardNumber}}" class="btn btn-primary">Edit</a>
-										  	</div>
-										  	<div>
-										   		<a th:href="@{'/deletetkguitien/' + ${tkguitien.idCardNumber}}" onclick="return window.confirm('Are you sure?');"  class="btn btn-danger">Delete</a>
-										  	</div>
-						                </td  >
+					                </tr >
+					                <tr th:each="giaodich :${listgiaodich}">
+						                <td th:text="${giaodich.id}"></td >
+						                <td th:text="${giaodich.exchange}"></td >
+						                <td th:text="${#dates.format(giaodich.TransactionDate, 'dd-MM-yyyy')}"></td >
+						                <td th:text="${giaodich.employee.name}"></td >
+						                <td th:text="${giaodich.tkguitien.idCardNumber}"></td >
+						                <td th:text="${giaodich.tktindung.idCardNumber}"></td >
+					            	</tr >
 					            </table>
 					        </div>
 					    </div>
                 	</div >
-                    <div style="margin-bottom:5px;margin-top:20px;">
-                        <a th:href="@{'/chuyentien/' + ${tkguitien.idCardNumber}}" class="btn btn-primary">chuyentien</a>
-                  </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
